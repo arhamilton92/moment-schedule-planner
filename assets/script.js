@@ -5,9 +5,29 @@ var currentHour = "";
 
 var arrayOfHours = ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", ]
 
+for (i = 0; i < arrayOfHours.length; i++) {
+    createHourEntry();
+}
 
-var hourColumn = ($("<div>").attr("class", "col-1 hour")).append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
-var contentColumn = ($("<div>").attr("class", "col-10 time-block content")).append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
+function createHourEntry() {
+    var hourColumn = ($("<div>").attr("class", "col-1 hour")).append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
+    var contentColumn = ($("<div>").attr("class", "col-10 time-block content")).append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
+    
+    var row = $("<div>").attr("class", "row time-block present").attr("id", "time-block-row").append(hourColumn, contentColumn);
+    $("#schedule").append(row);
+}
 
-var row = $("<div>").attr("class", "row time-block present").attr("id", "time-block-row").append(hourColumn, contentColumn);
-$("#schedule").append(row);
+// var hourColumn = ($("<div>").attr("class", "col-1 hour")).append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
+// var contentColumn = ($("<div>").attr("class", "col-10 time-block content")).append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
+
+// var row = $("<div>").attr("class", "row time-block present").attr("id", "time-block-row").append(hourColumn, contentColumn);
+// $("#schedule").append(row);
+
+
+// $("#schedule").append($("<div>").attr("class", "row time-block present").attr("id", "time-block-row"))
+// $("#time-block-row").append($("<div>").attr("class", "col-1 hour"));
+// $("#time-block-row").append($("<div>").attr("class", "col-10 time-block content"));
+// $(".hour").append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
+// $(".content").append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
+
+// $("#buttons-view").append($("<button>" + movies[i] + "</button>"))
