@@ -14,7 +14,7 @@ Tried to make the code as short and simple as possible.
 
 ## Usage
 
-[Deployed Website](https://arhamilton92.github.io/responsive-portfolio/)
+[Deployed Website](https://arhamilton92.github.io/moment-schedule-planner/)
 
 Enter your planned activities into the schedule and hit the button to save them! 
 Hour entries that are grey have already passed. The current hour is highlighted in orange, and future hours in green! 
