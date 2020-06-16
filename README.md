@@ -3,7 +3,7 @@
 ## The Goal
 
 Create a work hour scheduler, where you can input things you plan to do and the hours you wish to do them. Schedule is color coded and reacts depending on the hour of the day.
-Entries are be saved to local storage!
+Entries are be saved to local storage! Use Moment.js to aqcuire and use accurate current time data.
 
 ## What I've Done
 
