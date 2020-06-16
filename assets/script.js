@@ -24,7 +24,7 @@ function createSchedule() {
 
 //changes the color of the timeblocks depending on the current hour.
 function setColor() {
-    if (numericHourArray[i] === currentHour) {
+    if (currentHour == numericHourArray[i]) {
         row.attr("class", "row time-block present");
     }else if (numericHourArray[i] < currentHour) {
         row.attr("class", "row time-block past");
