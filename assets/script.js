@@ -1,33 +1,73 @@
 //VARIABLES
-var currentTime = "";
-var currentDate = "";
-var currentHour = "";
+//date array for top of page. hour array to match the numericHourArray.
+var currentDate = moment().format("dddd, MMMM Do, LT");
+var currentHour = moment().format("k");
+var row = "";
+var contentColumn ="";
 
 var arrayOfHours = ["9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", ]
+// I created the numericHourArray to make setting the timeblock colors simple.
+var numericHourArray = [9, 10, 11, 12, 13, 14, 15, 16, 17,]
 
-for (i = 0; i < arrayOfHours.length; i++) {
-    createHourEntry();
+//FUNCTION DEFINITIONS
+//displays... the date! 
+function displayDate() {
+    $("#currentDay").text(currentDate);
 }
 
+//applies all the generated timeblocks to the schedule
+function createSchedule() {
+    for (i = 0; i < arrayOfHours.length; i++) {
+        createHourEntry();
+    }
+}
+
+//changes the color of the timeblocks depending on the current hour.
+function setColor() {
+    if (numericHourArray[i] === currentHour) {
+        row.attr("class", "row time-block present");
+    }else if (numericHourArray[i] < currentHour) {
+        row.attr("class", "row time-block past");
+    }else {
+        row.attr("class", "row time-block future");
+    }
+}
+
+//generates and appends the timeblocks.
 function createHourEntry() {
-    var hourColumn = ($("<div>").attr("class", "col-1 hour")).append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
-    var contentColumn = ($("<div>").attr("class", "col-10 time-block content")).append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
+    hourText = arrayOfHours[i]
+    //pulls stored text content from local storage.
+    var savedContent = localStorage.getItem(numericHourArray[i]);
+    //creates and adds attributes to the hour column. appends a paragraph to that column.
+    var hourColumn = ($("<div>").attr("class", "col-2 hour")).append($("<p>" + hourText + "</p>").attr("class", "text"))
+    //creates and adds attributes to the content column.
+    var contentColumn = ($("<textarea>").attr("class", "col-9 time-block").attr("id", numericHourArray[i]))
+    //creates and adds attributes to the save column. appends a button to that column.
+    var saveColumn = ($("<div>").attr("class", "col-1 saveBtn")).append($("<button>").attr("class", "btn fas fa-save").attr("id", numericHourArray[i]))
+    //creates a row for all the columns, and then appends them to it.
+    row = $("<div>").attr("class", "row time-block").append(hourColumn, contentColumn, saveColumn);
     
-    var row = $("<div>").attr("class", "row time-block present").attr("id", "time-block-row").append(hourColumn, contentColumn);
+    //applies stored text content
+    contentColumn.text(savedContent);
+    //sets timeblock color
+    setColor();
+    //appends the row and its contents to the container
     $("#schedule").append(row);
 }
 
-// var hourColumn = ($("<div>").attr("class", "col-1 hour")).append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
-// var contentColumn = ($("<div>").attr("class", "col-10 time-block content")).append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
+//FUNCTION CALLS
+displayDate();
+createSchedule();
 
-// var row = $("<div>").attr("class", "row time-block present").attr("id", "time-block-row").append(hourColumn, contentColumn);
-// $("#schedule").append(row);
+//EVENT LISTENERS
+//save button listener
+$(document).on("click", ".btn", function (event) {
+    //takes the value of the button's id.
+    var key = $(this).attr("id");
+    //uses button's id (which is the same and the textarea's id) to target the approproate textarea
+    var textContent = $("#" + key).val();
+    //stores the key and text
+    localStorage.setItem(key, textContent);
+    });
 
-
-// $("#schedule").append($("<div>").attr("class", "row time-block present").attr("id", "time-block-row"))
-// $("#time-block-row").append($("<div>").attr("class", "col-1 hour"));
-// $("#time-block-row").append($("<div>").attr("class", "col-10 time-block content"));
-// $(".hour").append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
-// $(".content").append($("<p>" + "TEXT" + "</p>").attr("class", "time-block-text"))
-
-// $("#buttons-view").append($("<button>" + movies[i] + "</button>"))
+    //I'M SUPER STOKED I FINISHED THIS! criticism on script layout is GREATLY appreciated.
