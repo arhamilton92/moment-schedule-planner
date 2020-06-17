@@ -43,7 +43,7 @@ function createHourEntry() {
     //creates and adds attributes to the content column.
     var contentColumn = ($("<textarea>").attr("class", "col-9 time-block").attr("id", numericHourArray[i]))
     //creates and adds attributes to the save column. appends a button to that column.
-    var saveColumn = ($("<div>").attr("class", "col-1 saveBtn")).append($("<button>").attr("class", "btn fas fa-save").attr("id", numericHourArray[i]))
+    var saveColumn = ($("<button>").attr("class", "col-sm-1 btn btn-info i fas fa-lock saveBtn").attr("id", numericHourArray[i]))
     //creates a row for all the columns, and then appends them to it.
     row = $("<div>").attr("class", "row time-block").append(hourColumn, contentColumn, saveColumn);
     
